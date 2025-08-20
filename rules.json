@@ -1,0 +1,156 @@
+{
+  "rules": [
+    {
+      "name": "Newsletter Auto-Read",
+      "description": "Mark newsletters as read automatically",
+      "predicate": "Any",
+      "conditions": [
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "newsletter"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "unsubscribe"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark as read"
+        }
+      ]
+    },
+    {
+      "name": "Important Emails",
+      "description": "Move important emails from specific senders",
+      "predicate": "Any",
+      "conditions": [
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "boss@company.com"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "URGENT"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "IMPORTANT"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark as unread"
+        }
+      ]
+    },
+    {
+      "name": "Old Promotions Cleanup",
+      "description": "Mark old promotional emails as read",
+      "predicate": "All",
+      "conditions": [
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "promotion"
+        },
+        {
+          "field": "received",
+          "predicate": "greater than",
+          "value": "7 days"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark as read"
+        }
+      ]
+    },
+    {
+      "name": "Social Media Notifications",
+      "description": "Auto-process social media notifications",
+      "predicate": "Any",
+      "conditions": [
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "facebook"
+        },
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "twitter"
+        },
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "linkedin"
+        },
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "instagram"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark as read"
+        }
+      ]
+    },
+    {
+      "name": "Spam Filter",
+      "description": "Filter potential spam messages",
+      "predicate": "Any",
+      "conditions": [
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "You've won"
+        },
+        {
+          "field": "subject",
+          "predicate": "contains",
+          "value": "Congratulations"
+        },
+        {
+          "field": "message",
+          "predicate": "contains",
+          "value": "click here now"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark as read"
+        }
+      ]
+    },
+    {
+      "name": "Recent Unread Work Emails",
+      "description": "Keep recent work emails unread for attention",
+      "predicate": "All",
+      "conditions": [
+        {
+          "field": "from",
+          "predicate": "contains",
+          "value": "@company.com"
+        },
+        {
+          "field": "received",
+          "predicate": "less than",
+          "value": "2 days"
+        }
+      ],
+      "actions": [
+        {
+          "type": "mark as unread"
+        }
+      ]
+    }
+  ]
+}
